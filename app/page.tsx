@@ -8,7 +8,9 @@ export default function Home() {
       <h1 className="flex justify-center pt-20 text-2xl font-medium mb-20">
         Rich Text Editor
       </h1>
-      <Editor />
+      <div className="w-full h-full">
+        <Editor />
+      </div>
     </div>
   );
 }
