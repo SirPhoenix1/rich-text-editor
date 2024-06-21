@@ -1,1 +1,2 @@
-heading, quote block buttons
+interactive toolbar buttons
+make font dropdown limited in height

@@ -72,6 +72,11 @@ const config = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+      fontFamily: {
+        inter: ["Inter", "sans-serif"],
+        comics: ["Comic Sans MS, Comic Sans"],
+        cursive: ["cursive", "Snell Roundhand"],
+      },
     },
   },
   plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],

@@ -10,7 +10,6 @@ import {
   Quote,
   Redo,
   Strikethrough,
-  Type,
   Undo,
   CaseSensitive,
   AlignLeft,
@@ -26,12 +25,17 @@ import {
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 import { Button } from "./ui/button";
+import { fontFamilies } from "./custom_font_family";
+import { useState } from "react";
+import "@/styles/toolbar.css";
 
 interface EditorToolbarProps {
   editor: Editor | null;
 }
 
 const EditorToolbar = ({ editor }: EditorToolbarProps) => {
+  const [fontLabel, setFontLabel] = useState("Inter");
+  const [fontValue, setFontValue] = useState("inter");
   if (!editor) return null;
 
   return (
@@ -112,78 +116,35 @@ const EditorToolbar = ({ editor }: EditorToolbarProps) => {
       {/* Font Family */}
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button className="p-2" variant="ghost">
-            <Type className="h-4 w-4" />
+          <Button
+            className="p-2"
+            style={{
+              fontFamily: fontValue,
+            }}
+            variant="ghost"
+          >
+            {fontLabel}
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent>
-          <DropdownMenuItem
-            onClick={() => editor.chain().focus().setFontFamily("Inter").run()}
-            className={
-              editor.isActive("textStyle", { fontFamily: "Inter" })
-                ? "is-active"
-                : ""
-            }
-          >
-            Inter
-          </DropdownMenuItem>
-          <DropdownMenuItem
-            onClick={() =>
-              editor
-                .chain()
-                .focus()
-                .setFontFamily("Comic Sans MS, Comic Sans")
-                .run()
-            }
-            className={
-              editor.isActive("textStyle", {
-                fontFamily: "Comic Sans MS, Comic Sans",
-              })
-                ? "is-active"
-                : ""
-            }
-          >
-            Comic Sans
-          </DropdownMenuItem>
-          <DropdownMenuItem
-            onClick={() => editor.chain().focus().setFontFamily("serif").run()}
-            className={
-              editor.isActive("textStyle", { fontFamily: "serif" })
-                ? "is-active"
-                : ""
-            }
-          >
-            Serif
-          </DropdownMenuItem>
-          <DropdownMenuItem
-            onClick={() =>
-              editor.chain().focus().setFontFamily("monospace").run()
-            }
-            className={
-              editor.isActive("textStyle", { fontFamily: "monospace" })
-                ? "is-active"
-                : ""
-            }
-          >
-            Monospace
-          </DropdownMenuItem>
-          <DropdownMenuItem
-            onClick={() =>
-              editor.chain().focus().setFontFamily("cursive").run()
-            }
-            className={
-              editor.isActive("textStyle", { fontFamily: "cursive" })
-                ? "is-active"
-                : ""
-            }
-          >
-            Cursive
-          </DropdownMenuItem>
-          <DropdownMenuItem
-            onClick={() => editor.chain().focus().unsetFontFamily().run()}
-          >
-            Unset
-          </DropdownMenuItem>
+        <DropdownMenuContent className="scrollable-dropdown">
+          {fontFamilies.map((font) => (
+            <DropdownMenuItem
+              key={font.value}
+              onClick={() => {
+                setFontLabel(font.label);
+                setFontValue(font.value);
+                editor.chain().focus().setFontFamily(font.value).run();
+              }}
+              className={
+                editor.isActive("textStyle", { fontFamily: font.value })
+                  ? "is-active"
+                  : ""
+              }
+              style={{ fontFamily: font.value }}
+            >
+              {font.label}
+            </DropdownMenuItem>
+          ))}
         </DropdownMenuContent>
       </DropdownMenu>
       {/* Font Size */}
@@ -340,7 +301,18 @@ const EditorToolbar = ({ editor }: EditorToolbarProps) => {
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button className="p-2" variant="ghost">
-            <AlignLeft className="h-4 w-4" />
+            {editor.isActive({ textAlign: "left" }) && (
+              <AlignLeft className="h-4 w-4" />
+            )}
+            {editor.isActive({ textAlign: "center" }) && (
+              <AlignCenter className="h-4 w-4" />
+            )}
+            {editor.isActive({ textAlign: "right" }) && (
+              <AlignRight className="h-4 w-4" />
+            )}
+            {editor.isActive({ textAlign: "justify" }) && (
+              <AlignJustify className="h-4 w-4" />
+            )}
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
@@ -385,6 +357,7 @@ const EditorToolbar = ({ editor }: EditorToolbarProps) => {
         size="sm"
         pressed={editor.isActive("strike")}
         onPressedChange={() => editor.chain().focus().toggleStrike().run()}
+        className={editor.isActive("strike") ? "is-active" : ""}
       >
         <Strikethrough className="h-4 w-4" />
       </Toggle>
