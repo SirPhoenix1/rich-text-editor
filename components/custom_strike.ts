@@ -1,6 +1,6 @@
-import { Mark } from "@tiptap/core";
+import Strike from "@tiptap/extension-strike";
 
-const CustomStrike = Mark.create({
+const CustomStrike = Strike.extend({
   name: "strike",
 
   parseHTML() {
