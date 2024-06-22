@@ -39,7 +39,7 @@ const Editor = () => {
     content: "",
     editable: true,
     onCreate: ({ editor }) => {
-      editor.chain().focus().setFontFamily("inter");
+      editor.commands.setFontFamily("inter");
     },
     extensions: [
       Blockquote,
@@ -79,6 +79,7 @@ const Editor = () => {
     <div>
       <EditorToolbar editor={editor} />
       <EditorContent editor={editor} />
+      {editor?.commands.focus()}
     </div>
   );
 };

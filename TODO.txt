@@ -1,3 +1,2 @@
 interactive toolbar buttons
-make font dropdown limited in height
 change font size dropdown to mapping
