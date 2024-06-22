@@ -27,6 +27,7 @@ import {
 import { Button } from "./ui/button";
 import { fontFamilies } from "./custom_font_family";
 import { useState } from "react";
+import font_sizes from "./font_sizes";
 import "@/styles/toolbar.css";
 
 interface EditorToolbarProps {
@@ -154,147 +155,20 @@ const EditorToolbar = ({ editor }: EditorToolbarProps) => {
             <CaseSensitive className="h-4 w-4" />
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent>
-          <DropdownMenuItem
-            onClick={() => editor.chain().focus().setFontSize("8pt").run()}
-            className={
-              editor.isActive("textStyle", { FontSize: "8pt" })
-                ? "is-active"
-                : ""
-            }
-          >
-            8
-          </DropdownMenuItem>
-          <DropdownMenuItem
-            onClick={() => editor.chain().focus().setFontSize("9pt").run()}
-            className={
-              editor.isActive("textStyle", { FontSize: "9pt" })
-                ? "is-active"
-                : ""
-            }
-          >
-            9
-          </DropdownMenuItem>
-          <DropdownMenuItem
-            onClick={() => editor.chain().focus().setFontSize("10pt").run()}
-            className={
-              editor.isActive("textStyle", { FontSize: "10pt" })
-                ? "is-active"
-                : ""
-            }
-          >
-            10
-          </DropdownMenuItem>
-          <DropdownMenuItem
-            onClick={() => editor.chain().focus().setFontSize("11pt").run()}
-            className={
-              editor.isActive("textStyle", { FontSize: "11pt" })
-                ? "is-active"
-                : ""
-            }
-          >
-            11
-          </DropdownMenuItem>
-          <DropdownMenuItem
-            onClick={() => editor.chain().focus().setFontSize("12pt").run()}
-            className={
-              editor.isActive("textStyle", { FontSize: "12pt" })
-                ? "is-active"
-                : ""
-            }
-          >
-            12
-          </DropdownMenuItem>
-          <DropdownMenuItem
-            onClick={() => editor.chain().focus().setFontSize("14pt").run()}
-            className={
-              editor.isActive("textStyle", { FontSize: "14pt" })
-                ? "is-active"
-                : ""
-            }
-          >
-            14
-          </DropdownMenuItem>
-          <DropdownMenuItem
-            onClick={() => editor.chain().focus().setFontSize("18pt").run()}
-            className={
-              editor.isActive("textStyle", { FontSize: "18pt" })
-                ? "is-active"
-                : ""
-            }
-          >
-            18
-          </DropdownMenuItem>
-          <DropdownMenuItem
-            onClick={() => editor.chain().focus().setFontSize("24pt").run()}
-            className={
-              editor.isActive("textStyle", { FontSize: "24pt" })
-                ? "is-active"
-                : ""
-            }
-          >
-            24
-          </DropdownMenuItem>
-          <DropdownMenuItem
-            onClick={() => editor.chain().focus().setFontSize("30pt").run()}
-            className={
-              editor.isActive("textStyle", { FontSize: "30pt" })
-                ? "is-active"
-                : ""
-            }
-          >
-            30
-          </DropdownMenuItem>
-          <DropdownMenuItem
-            onClick={() => editor.chain().focus().setFontSize("36pt").run()}
-            className={
-              editor.isActive("textStyle", { FontSize: "36pt" })
-                ? "is-active"
-                : ""
-            }
-          >
-            36
-          </DropdownMenuItem>
-          <DropdownMenuItem
-            onClick={() => editor.chain().focus().setFontSize("48pt").run()}
-            className={
-              editor.isActive("textStyle", { FontSize: "48pt" })
-                ? "is-active"
-                : ""
-            }
-          >
-            48
-          </DropdownMenuItem>
-          <DropdownMenuItem
-            onClick={() => editor.chain().focus().setFontSize("60pt").run()}
-            className={
-              editor.isActive("textStyle", { FontSize: "60pt" })
-                ? "is-active"
-                : ""
-            }
-          >
-            60
-          </DropdownMenuItem>
-          <DropdownMenuItem
-            onClick={() => editor.chain().focus().setFontSize("72pt").run()}
-            className={
-              editor.isActive("textStyle", { FontSize: "72pt" })
-                ? "is-active"
-                : ""
-            }
-          >
-            72
-          </DropdownMenuItem>
-          <DropdownMenuItem
-            onClick={() => editor.chain().focus().setFontSize("96pt").run()}
-            className={
-              editor.isActive("textStyle", { FontSize: "96pt" })
-                ? "is-active"
-                : ""
-            }
-          >
-            96
-          </DropdownMenuItem>
+        <DropdownMenuContent className="scrollable-dropdown">
+          {font_sizes.map((size) => (
+            <DropdownMenuItem
+              key={size}
+              onClick={() => editor.chain().focus().setFontSize(size).run()}
+              className={
+                editor.isActive("textStyle", { FontSize: size })
+                  ? "is-active"
+                  : ""
+              }
+            >
+              {size.replace("pt", "")}
+            </DropdownMenuItem>
+          ))}
         </DropdownMenuContent>
       </DropdownMenu>
       {/* Text Align */}
