@@ -16,6 +16,7 @@ import {
   AlignCenter,
   AlignRight,
   AlignJustify,
+  MoreHorizontal,
 } from "lucide-react";
 import { Toggle } from "./ui/toggle";
 import {
@@ -25,9 +26,10 @@ import {
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 import { Button } from "./ui/button";
-import { fontFamilies } from "./custom_font_family";
+import { fontList } from "@/app/fonts";
 import { useState } from "react";
 import font_sizes from "./font_sizes";
+import { inter } from "@/app/fonts";
 import "@/styles/toolbar.css";
 
 interface EditorToolbarProps {
@@ -36,16 +38,21 @@ interface EditorToolbarProps {
 
 const EditorToolbar = ({ editor }: EditorToolbarProps) => {
   const [fontLabel, setFontLabel] = useState("Inter");
-  const [fontValue, setFontValue] = useState("inter");
+  const [fontValue, setFontValue] = useState(inter.variable);
   if (!editor) return null;
 
+  const setFontFamily = (fontFamily: string) => {
+    editor.commands.setFontFamily(fontFamily);
+  };
+
   return (
-    <div className="relative border border-input bg-transparent rounded-md rounded-br-none rounded-bl-none p-1 flex flex-row items-center gap-1 overflow-hidden">
+    <div className="relative border border-input bg-transparent rounded-md rounded-br-none rounded-bl-none p-1 flex flex-row items-center gap-1 overflow-hidden toolbar">
       {/* Bold */}
       <Toggle
         size="sm"
         pressed={editor.isActive("bold")}
         onPressedChange={() => editor.chain().focus().toggleBold().run()}
+        id="boldBtn"
       >
         <Bold className="h-4 w-4" />
       </Toggle>
@@ -54,12 +61,13 @@ const EditorToolbar = ({ editor }: EditorToolbarProps) => {
         size="sm"
         pressed={editor.isActive("italic")}
         onPressedChange={() => editor.chain().focus().toggleItalic().run()}
+        id="italicBtn"
       >
         <Italic className="h-4 w-4" />
       </Toggle>
       {/* Heading */}
       <DropdownMenu>
-        <DropdownMenuTrigger asChild>
+        <DropdownMenuTrigger asChild id="headingBtn">
           <Button className="p-2" variant="ghost">
             <Heading className="h-4 w-4" />
           </Button>
@@ -116,9 +124,9 @@ const EditorToolbar = ({ editor }: EditorToolbarProps) => {
       </DropdownMenu>
       {/* Font Family */}
       <DropdownMenu>
-        <DropdownMenuTrigger asChild>
+        <DropdownMenuTrigger asChild id="fontFamilyBtn">
           <Button
-            className="p-2"
+            className="p-2 no-outline"
             style={{
               fontFamily: fontValue,
             }}
@@ -128,29 +136,30 @@ const EditorToolbar = ({ editor }: EditorToolbarProps) => {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="scrollable-dropdown">
-          {fontFamilies.map((font) => (
+          {fontList.map((font) => (
             <DropdownMenuItem
-              key={font.value}
+              key={font.name}
               onClick={() => {
-                setFontLabel(font.label);
-                setFontValue(font.value);
-                editor.chain().focus().setFontFamily(font.value).run();
+                setFontLabel(font.name);
+                setFontValue(font.font);
+                editor.chain().focus().setFontFamily(font.font).run();
+                console.log(font.font);
               }}
               className={
-                editor.isActive("textStyle", { fontFamily: font.value })
+                editor.isActive("textStyle", { fontFamily: font.font })
                   ? "is-active"
                   : ""
               }
-              style={{ fontFamily: font.value }}
+              style={{ fontFamily: font.font }}
             >
-              {font.label}
+              {font.name}
             </DropdownMenuItem>
           ))}
         </DropdownMenuContent>
       </DropdownMenu>
       {/* Font Size */}
       <DropdownMenu>
-        <DropdownMenuTrigger asChild>
+        <DropdownMenuTrigger asChild id="fontSizeBtn">
           <Button className="p-2" variant="ghost">
             <CaseSensitive className="h-4 w-4" />
           </Button>
@@ -173,7 +182,7 @@ const EditorToolbar = ({ editor }: EditorToolbarProps) => {
       </DropdownMenu>
       {/* Text Align */}
       <DropdownMenu>
-        <DropdownMenuTrigger asChild>
+        <DropdownMenuTrigger asChild id="alignBtn">
           <Button className="p-2" variant="ghost">
             {editor.isActive({ textAlign: "left" }) && (
               <AlignLeft className="h-4 w-4" />
@@ -232,6 +241,7 @@ const EditorToolbar = ({ editor }: EditorToolbarProps) => {
         pressed={editor.isActive("strike")}
         onPressedChange={() => editor.chain().focus().toggleStrike().run()}
         className={editor.isActive("strike") ? "is-active" : ""}
+        id="strikeBtn"
       >
         <Strikethrough className="h-4 w-4" />
       </Toggle>
@@ -240,6 +250,7 @@ const EditorToolbar = ({ editor }: EditorToolbarProps) => {
         size="sm"
         pressed={editor.isActive("bulletList")}
         onPressedChange={() => editor.chain().focus().toggleBulletList().run()}
+        id="ulBtn"
       >
         <List className="h-4 w-4" />
       </Toggle>
@@ -248,6 +259,7 @@ const EditorToolbar = ({ editor }: EditorToolbarProps) => {
         size="sm"
         pressed={editor.isActive("orderedList")}
         onPressedChange={() => editor.chain().focus().toggleOrderedList().run()}
+        id="olBtn"
       >
         <ListOrdered className="h-4 w-4" />
       </Toggle>
@@ -256,6 +268,7 @@ const EditorToolbar = ({ editor }: EditorToolbarProps) => {
         size="sm"
         pressed={editor.isActive("blockQuote")}
         onPressedChange={() => editor.chain().focus().toggleBlockquote().run()}
+        id="quoteBtn"
       >
         <Quote className="h-4 w-4" />
       </Toggle>
@@ -264,6 +277,7 @@ const EditorToolbar = ({ editor }: EditorToolbarProps) => {
         size="sm"
         variant="ghost"
         onClick={() => editor.chain().focus().undo().run()}
+        id="undoBtn"
       >
         <Undo className="h-4 w-4" />
       </Button>
@@ -272,9 +286,28 @@ const EditorToolbar = ({ editor }: EditorToolbarProps) => {
         size="sm"
         variant="ghost"
         onClick={() => editor.chain().focus().redo().run()}
+        id="redoBtn"
       >
         <Redo className="h-4 w-4" />
       </Button>
+      {/* More */}
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild id="moreBtn">
+          <Button className="p-2" variant="ghost">
+            <MoreHorizontal />
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent>
+          <DropdownMenuItem
+            onClick={() => editor.chain().focus().setTextAlign("center").run()}
+            className={
+              editor.isActive({ textAlign: "center" }) ? "is-active" : ""
+            }
+          >
+            <AlignCenter className="h-4 w-4" />
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
     </div>
   );
 };

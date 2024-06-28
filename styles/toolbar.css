@@ -2,3 +2,237 @@
   max-height: 200px;
   overflow-y: auto;
 }
+
+.no-outline:focus {
+  box-shadow: none;
+}
+
+/* Default state: all buttons visible */
+.toolbar Button {
+  display: inline-block;
+}
+
+@media (max-width: 339px) {
+  #boldBtn,
+  #italicBtn,
+  #headingBtn,
+  #fontFamilyBtn,
+  #fontSizeBtn,
+  #alignBtn,
+  #strikeBtn,
+  #ulBtn,
+  #olBtn,
+  #quoteBtn,
+  #undoBtn,
+  #redoBtn {
+    display: none;
+  }
+  #moreBtn {
+    display: inline-block;
+  }
+}
+
+/* Media query for medium-small screens (large mobile/small tablet): show a few more buttons */
+@media (min-width: 340px) {
+  #boldBtn,
+  #italicBtn,
+  #headingBtn,
+  #moreBtn {
+    display: inline-block;
+  }
+  #fontFamilyBtn,
+  #fontSizeBtn,
+  #alignBtn,
+  #strikeBtn,
+  #ulBtn,
+  #olBtn,
+  #quoteBtn,
+  #undoBtn,
+  #redoBtn {
+    display: none;
+  }
+}
+
+/* Media query for medium screens (tablet): show more buttons */
+@media (min-width: 420px) {
+  #boldBtn,
+  #italicBtn,
+  #headingBtn,
+  #fontFamilyBtn,
+  #moreBtn {
+    display: inline-block;
+  }
+  #fontSizeBtn,
+  #alignBtn,
+  #strikeBtn,
+  #ulBtn,
+  #olBtn,
+  #quoteBtn,
+  #undoBtn,
+  #redoBtn {
+    display: none;
+  }
+}
+
+@media (min-width: 500px) {
+  #boldBtn,
+  #italicBtn,
+  #headingBtn,
+  #fontFamilyBtn,
+  #fontSizeBtn,
+  #moreBtn {
+    display: inline-block;
+  }
+  #alignBtn,
+  #strikeBtn,
+  #ulBtn,
+  #olBtn,
+  #quoteBtn,
+  #undoBtn,
+  #redoBtn {
+    display: none;
+  }
+}
+
+@media (min-width: 580px) {
+  #boldBtn,
+  #italicBtn,
+  #headingBtn,
+  #fontFamilyBtn,
+  #fontSizeBtn,
+  #alignBtn,
+  #moreBtn {
+    display: inline-block;
+  }
+  #strikeBtn,
+  #ulBtn,
+  #olBtn,
+  #quoteBtn,
+  #undoBtn,
+  #redoBtn {
+    display: none;
+  }
+}
+
+@media (min-width: 660px) {
+  #boldBtn,
+  #italicBtn,
+  #headingBtn,
+  #fontFamilyBtn,
+  #fontSizeBtn,
+  #alignBtn,
+  #strikeBtn,
+  #moreBtn {
+    display: inline-block;
+  }
+  #ulBtn,
+  #olBtn,
+  #quoteBtn,
+  #undoBtn,
+  #redoBtn {
+    display: none;
+  }
+}
+
+@media (min-width: 740px) {
+  #boldBtn,
+  #italicBtn,
+  #headingBtn,
+  #fontFamilyBtn,
+  #fontSizeBtn,
+  #alignBtn,
+  #strikeBtn,
+  #ulBtn,
+  #moreBtn {
+    display: inline-block;
+  }
+  #olBtn,
+  #quoteBtn,
+  #undoBtn,
+  #redoBtn {
+    display: none;
+  }
+}
+
+@media (min-width: 820px) {
+  #boldBtn,
+  #italicBtn,
+  #headingBtn,
+  #fontFamilyBtn,
+  #fontSizeBtn,
+  #alignBtn,
+  #strikeBtn,
+  #ulBtn,
+  #olBtn,
+  #moreBtn {
+    display: inline-block;
+  }
+
+  #quoteBtn,
+  #undoBtn,
+  #redoBtn {
+    display: none;
+  }
+}
+
+@media (min-width: 900px) {
+  #boldBtn,
+  #italicBtn,
+  #headingBtn,
+  #fontFamilyBtn,
+  #fontSizeBtn,
+  #alignBtn,
+  #strikeBtn,
+  #ulBtn,
+  #olBtn,
+  #quoteBtn,
+  #moreBtn {
+    display: inline-block;
+  }
+
+  #undoBtn,
+  #redoBtn {
+    display: none;
+  }
+}
+
+@media (min-width: 980px) {
+  #boldBtn,
+  #italicBtn,
+  #headingBtn,
+  #fontFamilyBtn,
+  #fontSizeBtn,
+  #alignBtn,
+  #strikeBtn,
+  #ulBtn,
+  #olBtn,
+  #quoteBtn,
+  #undoBtn,
+  #moreBtn {
+    display: inline-block;
+  }
+  #redoBtn {
+    display: none;
+  }
+}
+
+/* Media query for large screens (desktop and up): show all buttons */
+@media (min-width: 1000px) {
+  #boldBtn,
+  #italicBtn,
+  #headingBtn,
+  #fontFamilyBtn,
+  #fontSizeBtn,
+  #alignBtn,
+  #strikeBtn,
+  #ulBtn,
+  #olBtn,
+  #quoteBtn,
+  #undoBtn,
+  #redoBtn {
+    display: inline-block;
+  }
+  #moreBtn {
+    display: none;
+  }
+}
