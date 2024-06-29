@@ -4,16 +4,14 @@ import { Bold } from "lucide-react";
 
 interface BoldButtonProps {
   editor: Editor;
-  id?: string;
 }
 
-const BoldButton = ({ editor, id }: BoldButtonProps) => {
+const BoldButton = ({ editor }: BoldButtonProps) => {
   return (
     <Toggle
       size="sm"
       pressed={editor.isActive("bold")}
       onPressedChange={() => editor.chain().focus().toggleBold().run()}
-      id={id}
     >
       <Bold className="h-4 w-4" />
     </Toggle>

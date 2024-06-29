@@ -1,6 +1,5 @@
 "use client";
 
-import { ReactNode } from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -9,24 +8,24 @@ import {
 } from "../ui/dropdown-menu";
 import { Button } from "../ui/button";
 import { MoreHorizontal } from "lucide-react";
+import React from "react";
 
 interface MoreButtonProps {
-  buttons: ReactNode[];
-  id?: string;
+  children: React.ReactNode;
 }
-const MoreButton = ({ buttons, id }: MoreButtonProps) => {
+const MoreButton = ({ children }: MoreButtonProps) => {
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild id={id}>
+      <DropdownMenuTrigger asChild className="more-button">
         <Button className="p-2" variant="ghost">
           <MoreHorizontal />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
-        {buttons.map((button, index) => (
-          <DropdownMenuItem key={index} id={`more-${index}`}>
-            {button}
-          </DropdownMenuItem>
+        {React.Children.map(children, (child, index) => (
+          <>
+            {child && <DropdownMenuItem key={index}>{child}</DropdownMenuItem>}
+          </>
         ))}
       </DropdownMenuContent>
     </DropdownMenu>

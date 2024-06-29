@@ -4,16 +4,14 @@ import { Quote } from "lucide-react";
 
 interface QuoteButtonProps {
   editor: Editor;
-  id?: string;
 }
 
-const QuoteButton = ({ editor, id }: QuoteButtonProps) => {
+const QuoteButton = ({ editor }: QuoteButtonProps) => {
   return (
     <Toggle
       size="sm"
       pressed={editor.isActive("blockQuote")}
       onPressedChange={() => editor.chain().focus().toggleBlockquote().run()}
-      id={id}
     >
       <Quote className="h-4 w-4" />
     </Toggle>

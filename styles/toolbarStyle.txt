@@ -1,0 +1,367 @@
+.scrollable-dropdown {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.no-outline:focus {
+  box-shadow: none;
+}
+
+/* Default state: all buttons visible */
+.toolbar Button {
+  display: inline-block;
+}
+
+@media (max-width: 339px) {
+  #tb-0,
+  #tb-1,
+  #tb-2,
+  #tb-3,
+  #tb-4,
+  #tb-5,
+  #tb-6,
+  #tb-7,
+  #tb-8,
+  #tb-9,
+  #tb-10,
+  #tb-11 {
+    display: none;
+  }
+  #more-btn,
+  #more-0,
+  #more-1,
+  #more-2,
+  #more-3,
+  #more-4,
+  #more-5,
+  #more-6,
+  #more-7,
+  #more-8,
+  #more-9,
+  #more-10,
+  #more-11 {
+    display: inline-block;
+  }
+}
+
+/* Media query for medium-small screens (large mobile/small tablet): show a few more buttons */
+@media (min-width: 340px) {
+  #tb-0,
+  #tb-1,
+  #tb-2,
+  #more-btn,
+  #more-4,
+  #more-5,
+  #more-6,
+  #more-7,
+  #more-8,
+  #more-9,
+  #more-10,
+  #more-11 {
+    display: inline-block;
+  }
+  #more-0,
+  #more-1,
+  #more-2,
+  #tb-3,
+  #tb-4,
+  #tb-5,
+  #tb-6,
+  #tb-7,
+  #tb-8,
+  #tb-9,
+  #tb-10,
+  #tb-11 {
+    display: none;
+  }
+}
+
+/* Media query for medium screens (tablet): show more buttons */
+@media (min-width: 420px) {
+  #tb-0,
+  #tb-1,
+  #tb-2,
+  #tb-3,
+  #more-btn,
+  #more-4,
+  #more-5,
+  #more-6,
+  #more-7,
+  #more-8,
+  #more-9,
+  #more-10,
+  #more-11 {
+    display: inline-block;
+  }
+  #more-0,
+  #more-1,
+  #more-2,
+  #more-3,
+  #tb-4,
+  #tb-5,
+  #tb-6,
+  #tb-7,
+  #tb-8,
+  #tb-9,
+  #tb-10,
+  #tb-11 {
+    display: none;
+  }
+}
+
+@media (min-width: 500px) {
+  #tb-0,
+  #tb-1,
+  #tb-2,
+  #tb-3,
+  #tb-4,
+  #more-btn,
+  #more-5,
+  #more-6,
+  #more-7,
+  #more-8,
+  #more-9,
+  #more-10,
+  #more-11 {
+    display: inline-block;
+  }
+  #more-0,
+  #more-1,
+  #more-2,
+  #more-3,
+  #more-4,
+  #tb-5,
+  #tb-6,
+  #tb-7,
+  #tb-8,
+  #tb-9,
+  #tb-10,
+  #tb-11 {
+    display: none;
+  }
+}
+
+@media (min-width: 580px) {
+  #tb-0,
+  #tb-1,
+  #tb-2,
+  #tb-3,
+  #tb-4,
+  #tb-5,
+  #more-btn,
+  #more-6,
+  #more-7,
+  #more-8,
+  #more-9,
+  #more-10,
+  #more-11 {
+    display: inline-block;
+  }
+  #more-0,
+  #more-1,
+  #more-2,
+  #more-3,
+  #more-4,
+  #more-5,
+  #tb-6,
+  #tb-7,
+  #tb-8,
+  #tb-9,
+  #tb-10,
+  #tb-11 {
+    display: none;
+  }
+}
+
+@media (min-width: 660px) {
+  #tb-0,
+  #tb-1,
+  #tb-2,
+  #tb-3,
+  #tb-4,
+  #tb-5,
+  #tb-6,
+  #more-btn,
+  #more-7,
+  #more-8,
+  #more-9,
+  #more-10,
+  #more-11 {
+    display: inline-block;
+  }
+  #more-0,
+  #more-1,
+  #more-2,
+  #more-3,
+  #more-4,
+  #more-5,
+  #more-6,
+  #tb-7,
+  #tb-8,
+  #tb-9,
+  #tb-10,
+  #tb-11 {
+    display: none;
+  }
+}
+
+@media (min-width: 740px) {
+  #tb-0,
+  #tb-1,
+  #tb-2,
+  #tb-3,
+  #tb-4,
+  #tb-5,
+  #tb-6,
+  #tb-7,
+  #more-btn,
+  #more-8,
+  #more-9,
+  #more-10,
+  #more-11 {
+    display: inline-block;
+  }
+  #more-0,
+  #more-1,
+  #more-2,
+  #more-3,
+  #more-4,
+  #more-5,
+  #more-6,
+  #more-7,
+  #tb-8,
+  #tb-9,
+  #tb-10,
+  #tb-11 {
+    display: none;
+  }
+}
+
+@media (min-width: 820px) {
+  #tb-0,
+  #tb-1,
+  #tb-2,
+  #tb-3,
+  #tb-4,
+  #tb-5,
+  #tb-6,
+  #tb-7,
+  #tb-8,
+  #more-btn,
+  #more-9,
+  #more-10,
+  #more-11 {
+    display: inline-block;
+  }
+  #more-0,
+  #more-1,
+  #more-2,
+  #more-3,
+  #more-4,
+  #more-5,
+  #more-6,
+  #more-7,
+  #more-8,
+  #tb-9,
+  #tb-10,
+  #tb-11 {
+    display: none;
+  }
+}
+
+@media (min-width: 900px) {
+  #tb-0,
+  #tb-1,
+  #tb-2,
+  #tb-3,
+  #tb-4,
+  #tb-5,
+  #tb-6,
+  #tb-7,
+  #tb-8,
+  #tb-9,
+  #more-btn,
+  #more-10,
+  #more-11 {
+    display: inline-block;
+  }
+  #more-0,
+  #more-1,
+  #more-2,
+  #more-3,
+  #more-4,
+  #more-5,
+  #more-6,
+  #more-7,
+  #more-8,
+  #more-9,
+  #tb-10,
+  #tb-11 {
+    display: none;
+  }
+}
+
+@media (min-width: 980px) {
+  #tb-0,
+  #tb-1,
+  #tb-2,
+  #tb-3,
+  #tb-4,
+  #tb-5,
+  #tb-6,
+  #tb-7,
+  #tb-8,
+  #tb-9,
+  #tb-10,
+  #more-btn,
+  #more-11 {
+    display: inline-block;
+  }
+  #more-0,
+  #more-1,
+  #more-2,
+  #more-3,
+  #more-4,
+  #more-5,
+  #more-6,
+  #more-7,
+  #more-8,
+  #more-9,
+  #more-10,
+  #tb-11 {
+    display: none;
+  }
+}
+
+/* Media query for large screens (desktop and up): show all buttons */
+@media (min-width: 1000px) {
+  #tb-0,
+  #tb-1,
+  #tb-2,
+  #tb-3,
+  #tb-4,
+  #tb-5,
+  #tb-6,
+  #tb-7,
+  #tb-8,
+  #tb-9,
+  #tb-10,
+  #tb-11 {
+    display: inline-block;
+  }
+  #more-0,
+  #more-1,
+  #more-2,
+  #more-3,
+  #more-4,
+  #more-5,
+  #more-6,
+  #more-7,
+  #more-8,
+  #more-9,
+  #more-10,
+  #more-11,
+  #more-btn {
+    display: none;
+  }
+}

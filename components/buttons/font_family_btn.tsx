@@ -14,16 +14,15 @@ import { fontList } from "@/app/fonts";
 
 interface FontFamilyButtonProps {
   editor: Editor;
-  id?: string;
 }
 
-const FontFamilyButton = ({ editor, id }: FontFamilyButtonProps) => {
+const FontFamilyButton = ({ editor }: FontFamilyButtonProps) => {
   const [fontLabel, setFontLabel] = useState("Inter");
   const [fontValue, setFontValue] = useState(inter.variable);
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild id={id}>
+      <DropdownMenuTrigger asChild>
         <Button
           className="p-2 no-outline"
           style={{

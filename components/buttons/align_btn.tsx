@@ -12,13 +12,12 @@ import { AlignCenter, AlignJustify, AlignLeft, AlignRight } from "lucide-react";
 
 interface AlignButtonProps {
   editor: Editor;
-  id?: string;
 }
 
-const AlignButton = ({ editor, id }: AlignButtonProps) => {
+const AlignButton = ({ editor }: AlignButtonProps) => {
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild id={id}>
+      <DropdownMenuTrigger asChild>
         <Button className="p-2" variant="ghost">
           {editor.isActive({ textAlign: "left" }) && (
             <AlignLeft className="h-4 w-4" />

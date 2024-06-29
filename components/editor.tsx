@@ -76,11 +76,15 @@ const Editor = () => {
   });
 
   return (
-    <div>
-      <EditorToolbar editor={editor} />
-      <EditorContent editor={editor} />
-      {editor?.commands.focus()}
-    </div>
+    <>
+      {editor && (
+        <div>
+          <EditorToolbar editor={editor} />
+          <EditorContent editor={editor} />
+          {editor.commands.focus()}
+        </div>
+      )}
+    </>
   );
 };
 

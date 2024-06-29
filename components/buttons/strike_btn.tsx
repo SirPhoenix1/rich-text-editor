@@ -4,17 +4,15 @@ import { Strikethrough } from "lucide-react";
 
 interface StrikeButtonProps {
   editor: Editor;
-  id?: string;
 }
 
-const StrikeButton = ({ editor, id }: StrikeButtonProps) => {
+const StrikeButton = ({ editor }: StrikeButtonProps) => {
   return (
     <Toggle
       size="sm"
       pressed={editor.isActive("strike")}
       onPressedChange={() => editor.chain().focus().toggleStrike().run()}
       className={editor.isActive("strike") ? "is-active" : ""}
-      id={id}
     >
       <Strikethrough className="h-4 w-4" />
     </Toggle>

@@ -10,13 +10,12 @@ import { Button } from "../ui/button";
 
 interface HeadingButtonProps {
   editor: Editor;
-  id?: string;
 }
 
-const HeadingButton = ({ editor, id }: HeadingButtonProps) => {
+const HeadingButton = ({ editor }: HeadingButtonProps) => {
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild id={id}>
+      <DropdownMenuTrigger asChild>
         <Button className="p-2" variant="ghost">
           <Heading className="h-4 w-4" />
         </Button>

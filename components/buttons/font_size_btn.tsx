@@ -13,13 +13,12 @@ import font_sizes from "@/components/font_sizes";
 
 interface FontSizeButtonProps {
   editor: Editor;
-  id?: string;
 }
 
-const FontSizeButton = ({ editor, id }: FontSizeButtonProps) => {
+const FontSizeButton = ({ editor }: FontSizeButtonProps) => {
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild id={id}>
+      <DropdownMenuTrigger asChild>
         <Button className="p-2" variant="ghost">
           <CaseSensitive className="h-4 w-4" />
         </Button>
