@@ -4,15 +4,16 @@ import { Redo } from "lucide-react";
 
 interface RedoButtonProps {
   editor: Editor;
+  id?: string;
 }
 
-const RedoButton = ({ editor }: RedoButtonProps) => {
+const RedoButton = ({ editor, id }: RedoButtonProps) => {
   return (
     <Button
       size="sm"
       variant="ghost"
       onClick={() => editor.chain().focus().redo().run()}
-      id="redoBtn"
+      id={id}
     >
       <Redo className="h-4 w-4" />
     </Button>

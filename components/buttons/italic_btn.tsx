@@ -4,15 +4,16 @@ import { Italic } from "lucide-react";
 
 interface ItalicButtonProps {
   editor: Editor;
+  id?: string;
 }
 
-const ItalicButton = ({ editor }: ItalicButtonProps) => {
+const ItalicButton = ({ editor, id }: ItalicButtonProps) => {
   return (
     <Toggle
       size="sm"
       pressed={editor.isActive("italic")}
       onPressedChange={() => editor.chain().focus().toggleItalic().run()}
-      id="italicBtn"
+      id={id}
     >
       <Italic className="h-4 w-4" />
     </Toggle>
