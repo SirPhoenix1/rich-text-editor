@@ -13,6 +13,8 @@ import FontSizeButton from "./font_size_btn";
 import AlignButton from "./align_btn";
 import UnderlineButton from "./underline_btn";
 import ColorButton from "./color_btn";
+import HighlightButton from "./highlight_btn";
+import LinkButton from "./link_btn";
 
 export {
   BoldButton,
@@ -30,4 +32,6 @@ export {
   AlignButton,
   UnderlineButton,
   ColorButton,
+  HighlightButton,
+  LinkButton,
 };

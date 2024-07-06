@@ -2,7 +2,7 @@
 
 import { Editor } from "@tiptap/react";
 import * as Buttons from "@/components/buttons/buttons_export";
-import { useEffect, useState, cloneElement } from "react";
+import { useEffect, useState } from "react";
 import "@/styles/toolbar.css";
 
 interface EditorToolbarProps {
@@ -21,6 +21,8 @@ const EditorToolbar = ({ editor }: EditorToolbarProps) => {
     <Buttons.ItalicButton editor={editor} key={"iBtn"} />,
     <Buttons.UnderlineButton editor={editor} key={"uBtn"} />,
     <Buttons.ColorButton editor={editor} key={"cBtn"} />,
+    <Buttons.HighlightButton editor={editor} key={"hlBtn"} />,
+    <Buttons.LinkButton editor={editor} key={"lBtn"} />,
     <Buttons.AlignButton editor={editor} key={"aBtn"} />,
     <Buttons.StrikeButton editor={editor} key={"sBtn"} />,
     <Buttons.UnorderedListButton editor={editor} key={"ulBtn"} />,
@@ -32,31 +34,7 @@ const EditorToolbar = ({ editor }: EditorToolbarProps) => {
 
   const updateButtonVisibility = () => {
     const width = window.innerWidth;
-    let visibleCount;
-
-    if (width < 340) {
-      visibleCount = 0;
-    } else if (width < 420) {
-      visibleCount = 3;
-    } else if (width < 500) {
-      visibleCount = 4;
-    } else if (width < 580) {
-      visibleCount = 5;
-    } else if (width < 660) {
-      visibleCount = 6;
-    } else if (width < 740) {
-      visibleCount = 7;
-    } else if (width < 820) {
-      visibleCount = 8;
-    } else if (width < 900) {
-      visibleCount = 9;
-    } else if (width < 980) {
-      visibleCount = 10;
-    } else if (width < 980) {
-      visibleCount = 11;
-    } else {
-      visibleCount = buttonComponents.length;
-    }
+    let visibleCount = width / 80 - 2;
 
     const visible = buttonComponents
       .slice(0, visibleCount)

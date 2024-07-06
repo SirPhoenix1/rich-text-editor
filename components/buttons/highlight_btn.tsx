@@ -1,14 +1,15 @@
 import { Editor } from "@tiptap/react";
-import { Baseline } from "lucide-react";
+import { Baseline, Highlighter } from "lucide-react";
 import { useState } from "react";
 import { ColorResult, SketchPicker } from "react-color";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { Button } from "../ui/button";
-interface ColorButtonProps {
+
+interface HighlightButtonProps {
   editor: Editor;
 }
 
-const ColorButton = ({ editor }: ColorButtonProps) => {
+const HighlightButton = ({ editor }: HighlightButtonProps) => {
   const [color, setColor] = useState("#000000");
 
   const applyColor = (selectedColor: ColorResult) => {
@@ -20,7 +21,7 @@ const ColorButton = ({ editor }: ColorButtonProps) => {
     <Popover>
       <PopoverTrigger asChild>
         <Button className="p-2" variant="ghost">
-          <Baseline className="h-4 w-4" />
+          <Highlighter className="h-4 w-4" />
         </Button>
       </PopoverTrigger>
       <PopoverContent>
@@ -30,4 +31,4 @@ const ColorButton = ({ editor }: ColorButtonProps) => {
   );
 };
 
-export default ColorButton;
+export default HighlightButton;

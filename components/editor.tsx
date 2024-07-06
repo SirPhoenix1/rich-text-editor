@@ -27,8 +27,11 @@ import CustomStrike from "./custom_strike";
 import Color from "@tiptap/extension-color";
 import CustomFontFamily from "./custom_font_family";
 import Underline from "@tiptap/extension-underline";
+import Highlight from "@tiptap/extension-highlight";
+import Link from "@tiptap/extension-link";
 
 import "@/styles/editor.css";
+import { useEffect } from "react";
 
 const Editor = () => {
   const editor = useEditor({
@@ -67,6 +70,8 @@ const Editor = () => {
       FontSize,
       CustomStrike,
       Underline,
+      Highlight,
+      Link,
       Placeholder.configure({
         placeholder: "Write here...",
       }),
@@ -78,13 +83,16 @@ const Editor = () => {
     ],
   });
 
+  useEffect(() => {
+    editor?.commands.focus();
+  }, [editor]);
+
   return (
     <>
       {editor && (
         <div>
           <EditorToolbar editor={editor} />
           <EditorContent editor={editor} />
-          {editor.commands.focus()}
         </div>
       )}
     </>

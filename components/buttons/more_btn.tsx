@@ -16,7 +16,7 @@ interface MoreButtonProps {
 const MoreButton = ({ children }: MoreButtonProps) => {
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild className="more-button">
+      <DropdownMenuTrigger asChild>
         <Button className="p-2" variant="ghost">
           <MoreHorizontal />
         </Button>
