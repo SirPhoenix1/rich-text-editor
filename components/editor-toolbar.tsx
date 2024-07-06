@@ -28,18 +28,18 @@ const EditorToolbar = ({ editor }: EditorToolbarProps) => {
   const [dropdownButtons, setDropdownButtons] = useState<number[]>([]);
 
   const buttonComponents = [
-    { id: 0, component: <BoldButton editor={editor} /> },
-    { id: 1, component: <ItalicButton editor={editor} /> },
-    { id: 2, component: <HeadingButton editor={editor} /> },
-    { id: 3, component: <FontFamilyButton editor={editor} /> },
-    { id: 4, component: <FontSizeButton editor={editor} /> },
-    { id: 5, component: <AlignButton editor={editor} /> },
-    { id: 6, component: <StrikeButton editor={editor} /> },
-    { id: 7, component: <UnorderedListButton editor={editor} /> },
-    { id: 8, component: <OrderedListButton editor={editor} /> },
-    { id: 9, component: <QuoteButton editor={editor} /> },
-    { id: 10, component: <UndoButton editor={editor} /> },
-    { id: 11, component: <RedoButton editor={editor} /> },
+    { id: 0, component: <BoldButton editor={editor} key={0} /> },
+    { id: 1, component: <ItalicButton editor={editor} key={1} /> },
+    { id: 2, component: <HeadingButton editor={editor} key={2} /> },
+    { id: 3, component: <FontFamilyButton editor={editor} key={3} /> },
+    { id: 4, component: <FontSizeButton editor={editor} key={4} /> },
+    { id: 5, component: <AlignButton editor={editor} key={5} /> },
+    { id: 6, component: <StrikeButton editor={editor} key={6} /> },
+    { id: 7, component: <UnorderedListButton editor={editor} key={7} /> },
+    { id: 8, component: <OrderedListButton editor={editor} key={8} /> },
+    { id: 9, component: <QuoteButton editor={editor} key={9} /> },
+    { id: 10, component: <UndoButton editor={editor} key={10} /> },
+    { id: 11, component: <RedoButton editor={editor} key={11} /> },
   ];
 
   const updateButtonVisibility = () => {

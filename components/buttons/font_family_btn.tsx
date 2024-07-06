@@ -9,28 +9,22 @@ import {
 import { DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";
 import { Button } from "../ui/button";
 import { useState } from "react";
-import { inter } from "@/app/fonts";
 import { fontList } from "@/app/fonts";
+import { cn } from "@/lib/utils";
 
 interface FontFamilyButtonProps {
   editor: Editor;
 }
 
 const FontFamilyButton = ({ editor }: FontFamilyButtonProps) => {
-  const [fontLabel, setFontLabel] = useState("Inter");
-  const [fontValue, setFontValue] = useState(inter.variable);
+  const [fontName, setFontName] = useState(fontList[0].name);
+  const [fontValue, setFontValue] = useState(fontList[0].value);
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button
-          className="p-2 no-outline"
-          style={{
-            fontFamily: fontValue,
-          }}
-          variant="ghost"
-        >
-          {fontLabel}
+        <Button className={`p-2 no-outline ${fontValue}`} variant="ghost">
+          {fontName}
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="scrollable-dropdown">
@@ -38,17 +32,16 @@ const FontFamilyButton = ({ editor }: FontFamilyButtonProps) => {
           <DropdownMenuItem
             key={font.name}
             onClick={() => {
-              setFontLabel(font.name);
-              setFontValue(font.font);
-              editor.chain().focus().setFontFamily(font.font).run();
-              console.log(font.font);
+              setFontName(font.name);
+              setFontValue(font.value);
+              editor.chain().focus().setFontFamily(font.value).run();
             }}
-            className={
-              editor.isActive("textStyle", { fontFamily: font.font })
+            className={cn(
+              `${font.value}`,
+              editor.isActive("textStyle", { FontFamily: font.name })
                 ? "is-active"
                 : ""
-            }
-            style={{ fontFamily: font.font }}
+            )}
           >
             {font.name}
           </DropdownMenuItem>

@@ -25,7 +25,7 @@ import Gapcursor from "@tiptap/extension-gapcursor";
 import History from "@tiptap/extension-history";
 import CustomStrike from "./custom_strike";
 import Color from "@tiptap/extension-color";
-import { FontFamilyExtension } from "./custom_font_family";
+import FontFamily from "@tiptap/extension-font-family";
 import "@/styles/editor.css";
 
 const Editor = () => {
@@ -60,7 +60,7 @@ const Editor = () => {
       Gapcursor,
       History,
       TextStyle,
-      FontFamilyExtension,
+      FontFamily,
       Color,
       FontSize,
       CustomStrike,

@@ -1,4 +1,3 @@
-import { NextFontWithVariable } from "next/dist/compiled/@next/font";
 import {
   Anton,
   Arimo,
@@ -125,14 +124,27 @@ export const baskervville = Baskervville({
 
 interface Font {
   name: string;
-  font: string;
+  value: string;
 }
 
 export const fontList: Font[] = [
-  { name: "Roboto", font: roboto.variable },
-  { name: "Open Sans", font: open_sans.variable },
-  { name: "Lato", font: lato.variable },
-  { name: "Courier Prime", font: courier_prime.variable },
-  { name: "Poppins", font: poppins.variable },
-  { name: "Fraunces", font: fraunces.variable },
+  { name: "Roboto", value: roboto.className },
+  { name: "Open Sans", value: open_sans.className },
+  { name: "Lato", value: lato.className },
+  { name: "Courier Prime", value: courier_prime.className },
+  { name: "Poppins", value: poppins.className },
+  { name: "Fraunces", value: fraunces.className },
+  { name: "Playfair Display", value: playfair_display.className },
+  { name: "Montserrat", value: montserrat.className },
+  { name: "Anton", value: anton.className },
+  { name: "Outfit", value: outfit.className },
+  { name: "Radley", value: radley.className },
+  { name: "Arimo", value: arimo.className },
+  { name: "Josefin Sans", value: josefin_sans.className },
+  { name: "Merriweather", value: merriweather.className },
+  { name: "Tangerine", value: tangerine.className },
+  { name: "Tinos", value: tinos.className },
+  { name: "Comic Neue", value: comic_neue.className },
+  { name: "Garamond", value: garamond.className },
+  { name: "Baskervville", value: baskervville.className },
 ];
