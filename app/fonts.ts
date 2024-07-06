@@ -99,7 +99,7 @@ export const merriweather = Merriweather({
 export const tangerine = Tangerine({
   subsets: ["latin"],
   variable: "--font-tangerine",
-  weight: "400",
+  weight: "700",
 });
 export const tinos = Tinos({
   subsets: ["latin"],

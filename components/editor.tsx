@@ -26,6 +26,8 @@ import History from "@tiptap/extension-history";
 import CustomStrike from "./custom_strike";
 import Color from "@tiptap/extension-color";
 import CustomFontFamily from "./custom_font_family";
+import Underline from "@tiptap/extension-underline";
+
 import "@/styles/editor.css";
 
 const Editor = () => {
@@ -64,6 +66,7 @@ const Editor = () => {
       Color,
       FontSize,
       CustomStrike,
+      Underline,
       Placeholder.configure({
         placeholder: "Write here...",
       }),

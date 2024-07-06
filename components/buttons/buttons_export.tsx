@@ -11,6 +11,8 @@ import RedoButton from "./redo_btn";
 import MoreButton from "./more_btn";
 import FontSizeButton from "./font_size_btn";
 import AlignButton from "./align_btn";
+import UnderlineButton from "./underline_btn";
+import ColorButton from "./color_btn";
 
 export {
   BoldButton,
@@ -26,4 +28,6 @@ export {
   MoreButton,
   FontSizeButton,
   AlignButton,
+  UnderlineButton,
+  ColorButton,
 };

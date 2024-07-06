@@ -1,22 +1,8 @@
 "use client";
 
 import { Editor } from "@tiptap/react";
-import {
-  BoldButton,
-  ItalicButton,
-  HeadingButton,
-  FontFamilyButton,
-  FontSizeButton,
-  AlignButton,
-  StrikeButton,
-  UnorderedListButton,
-  OrderedListButton,
-  QuoteButton,
-  UndoButton,
-  RedoButton,
-  MoreButton,
-} from "@/components/buttons/buttons_export";
-import { useEffect, useState } from "react";
+import * as Buttons from "@/components/buttons/buttons_export";
+import { useEffect, useState, cloneElement } from "react";
 import "@/styles/toolbar.css";
 
 interface EditorToolbarProps {
@@ -24,22 +10,24 @@ interface EditorToolbarProps {
 }
 
 const EditorToolbar = ({ editor }: EditorToolbarProps) => {
-  const [visibleButtons, setVisibleButtons] = useState<number[]>([]);
-  const [dropdownButtons, setDropdownButtons] = useState<number[]>([]);
+  const [visibleButtons, setVisibleButtons] = useState<string[]>([]);
+  const [dropdownButtons, setDropdownButtons] = useState<string[]>([]);
 
   const buttonComponents = [
-    { id: 0, component: <BoldButton editor={editor} key={0} /> },
-    { id: 1, component: <ItalicButton editor={editor} key={1} /> },
-    { id: 2, component: <HeadingButton editor={editor} key={2} /> },
-    { id: 3, component: <FontFamilyButton editor={editor} key={3} /> },
-    { id: 4, component: <FontSizeButton editor={editor} key={4} /> },
-    { id: 5, component: <AlignButton editor={editor} key={5} /> },
-    { id: 6, component: <StrikeButton editor={editor} key={6} /> },
-    { id: 7, component: <UnorderedListButton editor={editor} key={7} /> },
-    { id: 8, component: <OrderedListButton editor={editor} key={8} /> },
-    { id: 9, component: <QuoteButton editor={editor} key={9} /> },
-    { id: 10, component: <UndoButton editor={editor} key={10} /> },
-    { id: 11, component: <RedoButton editor={editor} key={11} /> },
+    <Buttons.HeadingButton editor={editor} key={"hBtn"} />,
+    <Buttons.FontFamilyButton editor={editor} key={"fFBtn"} />,
+    <Buttons.FontSizeButton editor={editor} key={"fSBtn"} />,
+    <Buttons.BoldButton editor={editor} key={"bBtn"} />,
+    <Buttons.ItalicButton editor={editor} key={"iBtn"} />,
+    <Buttons.UnderlineButton editor={editor} key={"uBtn"} />,
+    <Buttons.ColorButton editor={editor} key={"cBtn"} />,
+    <Buttons.AlignButton editor={editor} key={"aBtn"} />,
+    <Buttons.StrikeButton editor={editor} key={"sBtn"} />,
+    <Buttons.UnorderedListButton editor={editor} key={"ulBtn"} />,
+    <Buttons.OrderedListButton editor={editor} key={"olBtn"} />,
+    <Buttons.QuoteButton editor={editor} key={"qBtn"} />,
+    <Buttons.UndoButton editor={editor} key={"undoBtn"} />,
+    <Buttons.RedoButton editor={editor} key={"redoBtn"} />,
   ];
 
   const updateButtonVisibility = () => {
@@ -67,15 +55,15 @@ const EditorToolbar = ({ editor }: EditorToolbarProps) => {
     } else if (width < 980) {
       visibleCount = 11;
     } else {
-      visibleCount = 12;
+      visibleCount = buttonComponents.length;
     }
 
     const visible = buttonComponents
       .slice(0, visibleCount)
-      .map((button) => button.id);
+      .map((button) => (button.key ? button.key : ""));
     const dropdown = buttonComponents
       .slice(visibleCount)
-      .map((button) => button.id);
+      .map((button) => (button.key ? button.key : ""));
 
     setVisibleButtons(visible);
     setDropdownButtons(dropdown);
@@ -89,22 +77,21 @@ const EditorToolbar = ({ editor }: EditorToolbarProps) => {
 
   return (
     <div className="relative border border-input bg-transparent rounded-md rounded-br-none rounded-bl-none p-1 flex flex-row items-center gap-1 overflow-hidden toolbar">
-      {visibleButtons.map((id) => (
-        <div key={id} className="inline-block">
-          {buttonComponents.find((button) => button.id === id)?.component}
+      {visibleButtons.map((key) => (
+        <div key={key} className="inline-block">
+          {buttonComponents.find((button) => button.key === key)}
         </div>
       ))}
       {/* More */}
       {dropdownButtons.length > 0 && (
         <div className="inline-block relative">
-          <MoreButton>
-            {dropdownButtons.map((id) => {
-              const button = buttonComponents.find(
-                (button) => button.id === id
-              );
-              return button ? button.component : null;
-            })}
-          </MoreButton>
+          <Buttons.MoreButton>
+            {dropdownButtons.map((key) => (
+              <div key={key} className="inline-block">
+                {buttonComponents.find((button) => button.key === key)}
+              </div>
+            ))}
+          </Buttons.MoreButton>
         </div>
       )}
     </div>
