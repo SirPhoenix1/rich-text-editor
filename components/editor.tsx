@@ -1,37 +1,10 @@
 "use client";
 
+import { useEffect } from "react";
 import { EditorContent, useEditor } from "@tiptap/react";
 import EditorToolbar from "./editor-toolbar";
-import Placeholder from "@tiptap/extension-placeholder";
-import TextStyle from "@tiptap/extension-text-style";
-import FontSize from "tiptap-extension-font-size";
-import TextAlign from "@tiptap/extension-text-align";
-import Blockquote from "@tiptap/extension-blockquote";
-import BulletList from "@tiptap/extension-bullet-list";
-import ListItem from "@tiptap/extension-list-item";
-import CodeBlock from "@tiptap/extension-code-block";
-import HardBreak from "@tiptap/extension-hard-break";
-import Heading from "@tiptap/extension-heading";
-import HorizontalRule from "@tiptap/extension-horizontal-rule";
-import OrderedList from "@tiptap/extension-ordered-list";
-import Paragraph from "@tiptap/extension-paragraph";
-import Document from "@tiptap/extension-document";
-import Text from "@tiptap/extension-text";
-import Bold from "@tiptap/extension-bold";
-import Code from "@tiptap/extension-code";
-import Italic from "@tiptap/extension-italic";
-import Dropcursor from "@tiptap/extension-dropcursor";
-import Gapcursor from "@tiptap/extension-gapcursor";
-import History from "@tiptap/extension-history";
-import CustomStrike from "./custom_strike";
-import Color from "@tiptap/extension-color";
-import CustomFontFamily from "./custom_font_family";
-import Underline from "@tiptap/extension-underline";
-import Highlight from "@tiptap/extension-highlight";
-import Link from "@tiptap/extension-link";
-
+import * as ext from "./extensions_output";
 import "@/styles/editor.css";
-import { useEffect } from "react";
 
 const Editor = () => {
   const editor = useEditor({
@@ -47,35 +20,41 @@ const Editor = () => {
       editor.commands.setFontFamily("inter");
     },
     extensions: [
-      Blockquote,
-      BulletList,
-      ListItem,
-      CodeBlock,
-      HardBreak,
-      Heading,
-      HorizontalRule,
-      OrderedList,
-      Paragraph,
-      Document,
-      Text,
-      Bold,
-      Code,
-      Italic,
-      Dropcursor,
-      Gapcursor,
-      History,
-      TextStyle,
-      CustomFontFamily,
-      Color,
-      FontSize,
-      CustomStrike,
-      Underline,
-      Highlight,
-      Link,
-      Placeholder.configure({
+      ext.Blockquote,
+      ext.BulletList,
+      ext.OrderedList,
+      ext.ListItem,
+      ext.CodeBlock,
+      ext.HardBreak,
+      ext.Heading,
+      ext.HorizontalRule,
+      ext.Paragraph,
+      ext.Document,
+      ext.Text,
+      ext.Bold,
+      ext.Code,
+      ext.Italic,
+      ext.Dropcursor,
+      ext.Gapcursor,
+      ext.History,
+      ext.TextStyle,
+      ext.FontFamilyPlugin,
+      ext.Color,
+      ext.FontSize,
+      ext.StrikePlugin,
+      ext.Underline,
+      ext.Highlight,
+      ext.Link,
+      ext.TaskList.configure({
+        class: "task-list",
+      }),
+      ext.TaskItem.configure({
+        nested: true,
+      }),
+      ext.Placeholder.configure({
         placeholder: "Write here...",
       }),
-      TextAlign.configure({
+      ext.TextAlign.configure({
         types: ["heading", "paragraph"],
         alignments: ["left", "right", "center", "justify"],
         defaultAlignment: "left",

@@ -1,6 +1,6 @@
 import FontFamily from "@tiptap/extension-font-family";
 
-const CustomFontFamily = FontFamily.extend({
+const FontFamilyPlugin = FontFamily.extend({
   name: "fontFamily",
 
   addGlobalAttributes() {
@@ -28,4 +28,4 @@ const CustomFontFamily = FontFamily.extend({
   },
 });
 
-export default CustomFontFamily;
+export default FontFamilyPlugin;

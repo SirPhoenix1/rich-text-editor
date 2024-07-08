@@ -1,18 +1,18 @@
 .tiptap :first-child {
   margin-top: 0;
 }
-.tiptap ul {
+.tiptap .bullet-list {
   padding: 0 1rem;
   margin: 1.25rem 1rem 1.25rem 0.4rem;
   list-style-type: disc;
 }
-.tiptap ol {
+.tiptap .bullet-list li p,
+.tiptap .ordered-list {
   padding: 0 1rem;
   margin: 1.25rem 1rem 1.25rem 0.4rem;
   list-style-type: decimal;
 }
-.tiptap ul li p,
-.tiptap ol li p {
+.tiptap .ordered-list li p {
   margin-top: 0.25em;
   margin-bottom: 0.25em;
 }
@@ -123,4 +123,13 @@
   text-decoration-thickness: 2px;
   text-decoration-color: black;
   font-size: 30pt;
+}
+
+.task-list li > div {
+  display: inline;
+  margin-left: 5px;
+}
+
+.task-list li > div p {
+  display: inline;
 }

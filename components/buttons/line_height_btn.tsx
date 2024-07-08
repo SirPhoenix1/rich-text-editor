@@ -8,31 +8,14 @@ import {
 } from "../ui/dropdown-menu";
 import { DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";
 import { Button } from "../ui/button";
-import { useState } from "react";
+import { BetweenHorizontalStart } from "lucide-react";
+import { line_heights } from "../plugins/line_height_plugin";
 
-interface FontSizeButtonProps {
+interface LineHeightButtonProps {
   editor: Editor;
 }
 
-const font_sizes = [
-  "8",
-  "9",
-  "10",
-  "11",
-  "12",
-  "14",
-  "18",
-  "24",
-  "30",
-  "36",
-  "48",
-  "60",
-  "72",
-  "96",
-];
-
-const FontSizeButton = ({ editor }: FontSizeButtonProps) => {
-  const [fSize, setFSize] = useState(font_sizes[4]);
+const LineHeightButton = ({ editor }: LineHeightButtonProps) => {
   const handleCloseAutoFocus = (event: Event) => {
     event.preventDefault();
   };
@@ -41,31 +24,26 @@ const FontSizeButton = ({ editor }: FontSizeButtonProps) => {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button className="p-2" variant="ghost">
-          {fSize}
+          <BetweenHorizontalStart className="h-4 w-4" />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent
         onCloseAutoFocus={handleCloseAutoFocus}
         className="scrollable-dropdown"
       >
-        {font_sizes.map((size) => (
+        {line_heights.map((height) => (
           <DropdownMenuItem
-            key={size}
+            key={height}
             onClick={() => {
-              editor
-                .chain()
-                .focus()
-                .setFontSize(size + "pt")
-                .run();
-              setFSize(size);
+              editor.chain().focus().setLineHeight(height).run();
             }}
             className={
-              editor.isActive("textStyle", { FontSize: size })
+              editor.isActive("textStyle", { lineHeight: height })
                 ? "is-active"
                 : ""
             }
           >
-            {size}
+            {height}
           </DropdownMenuItem>
         ))}
       </DropdownMenuContent>
@@ -73,4 +51,4 @@ const FontSizeButton = ({ editor }: FontSizeButtonProps) => {
   );
 };
 
-export default FontSizeButton;
+export default LineHeightButton;

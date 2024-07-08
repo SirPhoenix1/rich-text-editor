@@ -1,6 +1,6 @@
 import Strike from "@tiptap/extension-strike";
 
-const CustomStrike = Strike.extend({
+const StrikePlugin = Strike.extend({
   name: "strike",
 
   parseHTML() {
@@ -69,4 +69,4 @@ const CustomStrike = Strike.extend({
   },
 });
 
-export default CustomStrike;
+export default StrikePlugin;
