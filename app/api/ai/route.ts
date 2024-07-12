@@ -1,36 +1,32 @@
-// @ts-nocheck
+import { createGoogleGenerativeAI } from "@ai-sdk/google";
+import { generateText } from "ai";
 
-/* eslint-disable jsx-a11y/alt-text */
-/* eslint-disable @next/next/no-img-element */
-import "server-only";
+const google = createGoogleGenerativeAI({
+  apiKey: process.env.GOOGLE_GENERATIVE_AI_API_KEY,
+});
 
-import {
-  createAI,
-  createStreamableUI,
-  getMutableAIState,
-  getAIState,
-  createStreamableValue,
-} from "ai/rsc";
+const model = google("models/gemini-pro", {
+  safetySettings: [
+    { category: "HARM_CATEGORY_HATE_SPEECH", threshold: "BLOCK_NONE" },
+    { category: "HARM_CATEGORY_DANGEROUS_CONTENT", threshold: "BLOCK_NONE" },
+    { category: "HARM_CATEGORY_HARASSMENT", threshold: "BLOCK_NONE" },
+    { category: "HARM_CATEGORY_SEXUALLY_EXPLICIT", threshold: "BLOCK_NONE" },
+  ],
+});
 
-import { BotCard, BotMessage } from "@/components/stocks";
+const systemPrompt =
+  "You are an author. Use the text until the uppercase words HERE_ENDS_THE_CONTEXT as the context to which the following prompt refers.";
 
-import { nanoid, sleep } from "@/lib/utils";
-import { saveChat } from "@/app/actions";
-import { SpinnerMessage, UserMessage } from "@/components/stocks/message";
-import { Chat } from "../types";
-import { auth } from "@/auth";
-import { CheckIcon, SpinnerIcon } from "@/components/ui/icons";
-import { format } from "date-fns";
-import { streamText } from "ai";
-import { google } from "@ai-sdk/google";
-import { GoogleGenerativeAI } from "@google/generative-ai";
-import { z } from "zod";
-import { rateLimit } from "./ratelimit";
+export async function POST(req: Request) {
+  const { prompt, text } = await req.json();
 
-const genAI = new GoogleGenerativeAI(
-  process.env.GOOGLE_GENERATIVE_AI_API_KEY || ""
-);
-
+  const result = await generateText({
+    model: model,
+    system: systemPrompt,
+    prompt: text + "HERE_ENDS_THE_CONTEXT" + prompt,
+  });
+}
+/*
 async function submitUserMessage(content: string) {
   "use server";
 
@@ -551,3 +547,4 @@ export const AI = createAI<AIState, UIState>({
     }
   },
 });
+*/
